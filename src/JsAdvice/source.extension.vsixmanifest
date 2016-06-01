@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="8e5bc658-1ed9-4839-939b-204b758063a6" Version="1.0" Language="en-US" Publisher="Charles Mendes de Macedo" />
+    <DisplayName>Js Advice - Thinking JavaScript as Ninja</DisplayName>
+    <Description xml:space="preserve">Js Advice is a JavaScript code analyzer. Checking possible errors or bad practices will advise possible changes, in JavaScript code. By Light bulb (Visual Studio 2015) and intuitive menu.</Description>
+    <Icon>PreviewOwl.png</Icon>
+    <PreviewImage>PreviewOwl.png</PreviewImage>
+    <Tags>Code Analyzer, Code Fixed, JavaScript, Good Practices, Light bulb</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+  </Assets>
+</PackageManifest>
