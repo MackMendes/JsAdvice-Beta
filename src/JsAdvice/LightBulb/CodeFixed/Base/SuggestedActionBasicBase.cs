@@ -36,6 +36,14 @@ namespace JsAdvice.LightBulb.CodeFixed.Base
             return Task.FromResult<object>(textBlock);
         }
 
+        internal override bool VerifiyHasCodeFixed()
+        {
+            if (Range.GetText().IndexOf(ValueFix) > -1)
+                return true;
+
+            return false;
+        }
+
         #endregion
 
         #region Method
@@ -54,14 +62,6 @@ namespace JsAdvice.LightBulb.CodeFixed.Base
 
             // Depois, pego a palavra (Span) para fazer o replace com a palavra corrigida
             return trakingSpanNew.GetSpan(textShotActual);
-        }
-
-        internal override bool VerifiyHasCodeFixed()
-        {
-            if (Range.GetText().IndexOf(ValueFix) > -1)
-                return true;
-
-            return false;
         }
 
         #endregion

@@ -48,8 +48,9 @@
     <Compile Include="LightBulb\CodeFixedSourceProvider.cs" />
     <Compile Include="LightBulb\CodeFixed\Base\SuggestedActionBase.cs" />
     <Compile Include="LightBulb\CodeFixed\Base\SuggestedActionBasicBase.cs" />
-    <Compile Include="LightBulb\CodeFixed\EqualsOperatorsSuggestd.cs" />
-    <Compile Include="LightBulb\CodeFixed\NotEqualsOperatorsSuggestd.cs" />
+    <Compile Include="LightBulb\CodeFixed\EqualsOperatorsSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\NotEqualsOperatorsSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\WithoutSemicolonSuggested.cs" />
     <Compile Include="LightBulb\Helper\VerifyCodeFixes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +76,7 @@
       <HintPath>..\..\packages\Microsoft.VisualStudio.CoreUtility.14.2.25123\lib\net45\Microsoft.VisualStudio.CoreUtility.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.Editor, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>

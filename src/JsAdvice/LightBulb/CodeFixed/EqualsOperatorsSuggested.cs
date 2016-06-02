@@ -4,23 +4,23 @@ using System.Threading;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
-    internal class NotEqualsOperatorsSuggestd : Base.SuggestedActionBasicBase
+    internal sealed class EqualsOperatorsSuggested : Base.SuggestedActionBasicBase
     {
         #region Fixed
 
-        private const string messagerDisplay = "Aconselhado utilizar negação de igualdade (!==), porque é mais performático. ";
+        private const string messagerDisplay = "Aconselhável utilizar três iguais (===). É mais performático.";
 
         #endregion
 
-        public NotEqualsOperatorsSuggestd(ITextBuffer buffer, ITextView view, SnapshotSpan range)
-            : base(buffer, view, range, messagerDisplay)
+        public EqualsOperatorsSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
+        : base(buffer, view, range, messagerDisplay)
         { }
 
-        #region Properties SuggestedActionBasicBase 
+        #region Preperties SuggestedActionBase
 
-        public override string ValueFix { get { return " != "; } }
+        public override string ValueFix { get { return " == "; } }
 
-        public override string ValueFixedUp { get { return " !== "; } }
+        public override string ValueFixedUp { get { return " === "; } }
 
         #endregion
 
@@ -37,5 +37,6 @@ namespace JsAdvice.LightBulb.CodeFixed
         }
 
         #endregion
+
     }
 }

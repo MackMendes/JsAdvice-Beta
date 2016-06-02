@@ -34,8 +34,9 @@ namespace JsAdvice.LightBulb.Helper
         private static List<SuggestedActionBase> AllFixeds(ITextBuffer buffer, ITextView view, SnapshotSpan range)
         {
             return new List<SuggestedActionBase> {
-                new EqualsOperatorsSuggestd(buffer, view, range), 
-                new NotEqualsOperatorsSuggestd(buffer, view, range)
+                new EqualsOperatorsSuggested(buffer, view, range), 
+                new NotEqualsOperatorsSuggested(buffer, view, range),
+                new WithoutSemicolonSuggested(buffer, view, range),
             };
         }
     }
