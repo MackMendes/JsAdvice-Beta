@@ -30,8 +30,8 @@ namespace JsAdvice.LightBulb.CodeFixed.Base
             if (cancellationToken.IsCancellationRequested)
                 return base.GetPreviewAsync(cancellationToken);
 
-            var textJob = base.Range.GetText();
-            var inline = new Run(textJob.Replace(ValueFix, ValueFixedUp));
+            var textJob = base.Range.GetText().Trim();
+            var inline = new Run(string.Concat(" ", textJob.Replace(ValueFix, ValueFixedUp)));
             var textBlock = new TextBlock(inline);
             return Task.FromResult<object>(textBlock);
         }

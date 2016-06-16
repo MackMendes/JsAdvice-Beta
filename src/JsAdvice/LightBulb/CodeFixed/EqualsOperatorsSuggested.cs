@@ -8,7 +8,7 @@ namespace JsAdvice.LightBulb.CodeFixed
     {
         #region Fixed
 
-        private const string messagerDisplay = "Aconselhável utilizar três iguais (===). É mais performático.";
+        private const string messagerDisplay = "Advisable to use three equal (===). It is performative.";
 
         #endregion
 

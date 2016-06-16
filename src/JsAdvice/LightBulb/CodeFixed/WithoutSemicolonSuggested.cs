@@ -10,6 +10,9 @@ using System.Windows.Documents;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
+    /// <summary>
+    /// Refactory this Class 
+    /// </summary>
     internal sealed class WithoutSemicolonSuggested : Base.SuggestedActionBase
     {
         #region Fixed
@@ -35,8 +38,8 @@ namespace JsAdvice.LightBulb.CodeFixed
 
 
         #region Properties To Context
-        // ao fazer Bundling e Minification.
-        private const string messagerDisplay = "Aconselhável incluir ponto e virgula (;) no final do comando. Evita erros.";
+        
+        private const string messagerDisplay = "Advisable to include a semicolon (;) at the end of the command. Prevents errors.";
 
         #endregion
 

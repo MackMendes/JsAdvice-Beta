@@ -4,6 +4,7 @@
     <Identity Id="8e5bc658-1ed9-4839-939b-204b758063a6" Version="1.0" Language="en-US" Publisher="Charles Mendes de Macedo" />
     <DisplayName>Js Advice - Thinking JavaScript as Ninja</DisplayName>
     <Description xml:space="preserve">Js Advice is a JavaScript code analyzer. Checking possible errors or bad practices will advise possible changes, in JavaScript code. By Light bulb (Visual Studio 2015) and intuitive menu.</Description>
+    <License>Resources\LICENSE</License>
     <Icon>PreviewOwl.png</Icon>
     <PreviewImage>PreviewOwl.png</PreviewImage>
     <Tags>Code Analyzer, Code Fixed, JavaScript, Good Practices, Light bulb</Tags>

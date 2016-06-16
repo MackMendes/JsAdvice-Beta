@@ -8,7 +8,7 @@ namespace JsAdvice.LightBulb.CodeFixed
     {
         #region Fixed
 
-        private const string messagerDisplay = "Aconselhável utilizar negação de igualdade com dois iguais (!==). É mais performático.";
+        private const string messagerDisplay = "Advisable to use denial of equality with two equal (! ==). It is performative.";
 
         #endregion
 
