@@ -56,7 +56,6 @@ namespace JsAdvice.LightBulb.CodeFixed
             return Task.FromResult<object>(textBlock);
         }
 
-
         public WithoutSemicolonSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
             : base(buffer, view, range, messagerDisplay)
         {
