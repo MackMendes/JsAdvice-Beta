@@ -31,7 +31,7 @@ namespace JsAdvice.LightBulb
 
         #region Base Implementetion
 
-        public event EventHandler<EventArgs> SuggestedActionsChanged;
+        public event EventHandler<EventArgs> SuggestedActionsChanged = (sender, e) => { };
 
         public void Dispose()
         {

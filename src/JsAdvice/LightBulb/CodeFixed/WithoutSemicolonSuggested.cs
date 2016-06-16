@@ -1,10 +1,12 @@
 ﻿using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
@@ -25,28 +27,37 @@ namespace JsAdvice.LightBulb.CodeFixed
         private readonly string[] carateresAggregation = new string[] { string.Concat(signalPositive, signalPositive),
             string.Concat(signalNegative, signalNegative) };
 
-        private readonly string[] reservedWordBeginNextLine = new string[] { "var", "const", "let" };
+        private readonly string[] reservedWordBeginCommand = new string[] { "var", "const", "let", "return" };
 
         private readonly string[] findEndNextLine = new string[] { "}" };
-
-
-
-
-        private const string messagerDisplay = "Aconselhável colocar ponto e virgula no final do comando. Evita erros ao fazer Bundling e Minification.";
 
         #endregion
 
 
         #region Properties To Context
-
+        // ao fazer Bundling e Minification.
+        private const string messagerDisplay = "Aconselhável incluir ponto e virgula (;) no final do comando. Evita erros.";
 
         #endregion
+
+        public override bool HasPreview { get; } = true;
+
+        public override Task<object> GetPreviewAsync(CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
+                return base.GetPreviewAsync(cancellationToken);
+
+            var textJob = base.Range.GetText().Trim();
+            var inline = new Run(string.Concat(" ", textJob, "; "));
+            var textBlock = new TextBlock(inline);
+            return Task.FromResult<object>(textBlock);
+        }
 
 
         public WithoutSemicolonSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
             : base(buffer, view, range, messagerDisplay)
         {
-            reservedWordBeginNextLine.Intersect(reservedWordBeginNotNecessarySemicolon);
+            reservedWordBeginCommand.Intersect(reservedWordBeginNotNecessarySemicolon);
             notNecessarySemicolon.Intersect(caracteresConcat);
             caracteresConcat.Add(signalPositive);
             caracteresConcat.Add(signalNegative);
@@ -56,6 +67,8 @@ namespace JsAdvice.LightBulb.CodeFixed
         {
             this.TextBuffer.Insert(this.Range.End.Position, ";");
         }
+
+        #region Fixed
 
         internal override bool VerifiyHasCodeFixed()
         {
@@ -91,11 +104,11 @@ namespace JsAdvice.LightBulb.CodeFixed
                 (getEndWord.LastIndexOf(signalPositive) == lastPositionWord || getEndWord.LastIndexOf(signalNegative) == lastPositionWord))
                 return false;
 
-            return VerifyDetails(treeSyntacsThisContext, getBeginWord, getEndWord);
+            return VerifyDetails(treeSyntacsThisContext, getBeginWord, getEndWord, textLine);
         }
 
 
-        private bool VerifyDetails(ITextSnapshotLine treeSyntacsThisContext, string getBeginWord, string getEndWord)
+        private bool VerifyDetails(ITextSnapshotLine treeSyntacsThisContext, string getBeginWord, string getEndWord, string textLine)
         {
             bool hasFixed = false;
             var AllLines = this.TextBuffer.CurrentSnapshot.Lines.ToArray();
@@ -108,8 +121,8 @@ namespace JsAdvice.LightBulb.CodeFixed
             wordBeginNextLine = splitCommandNextLine[0];
 
             var caracteresConcatInString = caracteresConcat.ConvertAll<string>(x => x.ToString());
-            if (reservedWordBeginNextLine.Contains(getBeginWord) && !string.IsNullOrWhiteSpace(getEndWord) &&
-                !caracteresConcatInString.ToList<string>().Contains(getEndWord) && 
+            if (reservedWordBeginCommand.Contains(getBeginWord) && !string.IsNullOrWhiteSpace(getEndWord) &&
+                !caracteresConcatInString.Contains(getEndWord) &&
                 ((wordBeginNextLine.IndexOf(signalPositive) != 0 && wordBeginNextLine.IndexOf(signalNegative) != 0) ||
                 wordBeginNextLine.IndexOf("++") == 0 || wordBeginNextLine.IndexOf("--") == 0 || carateresAggregation.Contains(wordBeginNextLine)))
                 return true;
@@ -119,13 +132,25 @@ namespace JsAdvice.LightBulb.CodeFixed
             var wordBeginProvLine = splitCommandProviusLine[0];
             var wordEndProvLine = splitCommandProviusLine[splitCommandProviusLine.Count() - 1];
             var notNecessarySemicolonInList = notNecessarySemicolon.ToList().ConvertAll<string>(x => x.ToString());
-            if (reservedWordBeginNextLine.Contains(wordBeginNextLine) || (findEndNextLine.Contains(wordBeginNextLine) && 
-                reservedWordBeginNextLine.Contains(wordBeginProvLine) && !notNecessarySemicolonInList.Contains(wordEndProvLine)))
+
+            //if (reservedWordBeginCommand.Contains(wordBeginProvLine) && !notNecessarySemicolonInList.Contains(wordEndProvLine))
+            //    return true;
+
+            if (reservedWordBeginCommand.Contains(wordBeginNextLine))
                 return true;
 
+            // caso de:  
+            // { teste: 1  
+            // }
+            if (findEndNextLine.Contains(wordBeginNextLine))
+                if (textLine.IndexOf(':') == -1 && wordEndProvLine.IndexOf(':') == -1)
+                    return true;
+
+#pragma warning disable CS1030 // #warning: '"Ainda falta alguns cenários para concluir"'
 #warning "Ainda falta alguns cenários para concluir"
 
             return hasFixed;
+#pragma warning restore CS1030 // #warning: '"Ainda falta alguns cenários para concluir"'
         }
 
 
@@ -167,7 +192,8 @@ namespace JsAdvice.LightBulb.CodeFixed
             }
 
             return string.Empty;
-
         }
+
+        #endregion
     }
 }
