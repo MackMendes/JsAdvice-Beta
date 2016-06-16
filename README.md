@@ -2,8 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/au4adqoicqd04ip1?svg=true)](https://ci.appveyor.com/project/MackMendes/jsadvice-beta)
 
-<!-- Update the VS Gallery link after you upload the VSIX-->
-Download this extension from the [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/[GuidFromGallery])
+Download this extension from the [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/fdb40cc5-7e22-4d35-9b07-ce7e5aee3a46?SRC=VSIDE)
 or get the [CI build](http://vsixgallery.com/extension/8e5bc658-1ed9-4839-939b-204b758063a6/).
 
 ---------------------------------------
