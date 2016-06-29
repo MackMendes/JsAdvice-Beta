@@ -4,23 +4,23 @@ using System.Threading;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
-    internal sealed class NotEqualsOperatorsSuggested : Base.SuggestedActionBasicBase
+    internal sealed class InicialyzeArraySuggested : Base.SuggestedActionBasicBase
     {
         #region Fixed
 
-        private const string messagerDisplay = "Advisable to use denial of equality with two equal (! ==). It is performative.";
+        private const string messagerDisplay = "Advised change the boot array value, changing 'new Array()' with '[]'. It is performative.";
 
         #endregion
 
-        public NotEqualsOperatorsSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
+        public InicialyzeArraySuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
             : base(buffer, view, range, messagerDisplay)
         { }
 
         #region Properties SuggestedActionBasicBase 
 
-        public override string ValueFix { get { return " != "; } }
+        public override string ValueFix { get { return " new Array()"; } }
 
-        public override string ValueFixedUp { get { return " !== "; } }
+        public override string ValueFixedUp { get { return " []"; } }
 
         #endregion
 

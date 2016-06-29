@@ -35,7 +35,9 @@ namespace JsAdvice.LightBulb.Helper
         {
             return new List<SuggestedActionBase> {
                 new EqualsOperatorsSuggested(buffer, view, range), 
-                new NotEqualsOperatorsSuggested(buffer, view, range),
+                new UnequalOperatorsSuggested(buffer, view, range),
+                new InicialyzeArraySuggested(buffer, view, range),
+                new InicialyzeObjectSuggested(buffer, view, range),
                 new WithoutSemicolonSuggested(buffer, view, range),
             };
         }
