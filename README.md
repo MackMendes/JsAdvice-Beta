@@ -27,7 +27,7 @@ Using the Light Bulb Visual Studio 2015:
 ![Context Menu](art/features/LightBulb.PNG)
 
 ### Equals Operators:
-In code that equality comparison is with two equal (==), then will be shown an improvement (press 'ctrl + .' or click in light bulb), to use three equal (===). Indicating how it will look the result.  
+In code that equality comparison is with two equal `==`, then will be shown an improvement (press 'ctrl + .' or click in light bulb), to use three equal `===`. Indicating how it will look the result.  
 
 ![Context Menu](art/features/EqualOperators1.PNG)
 
@@ -36,7 +36,7 @@ Pressing enter or clicking on the suggestion, will apply.
 ![Context Menu](art/features/EqualOperators2.PNG)
 
 ### Unequal Operators
-When writing an unequal code '! =', It will be suggested to use '! ==' (press 'ctrl + .' or click in light bulb).
+When writing an unequal code `!=`, It will be suggested to use `!==` (press 'ctrl + .' or click in light bulb).
 
 ![Context Menu](art/features/UnequalOperators.PNG)
 
@@ -52,6 +52,27 @@ When writing code that has no semicolon (;) at the end of the command will be su
 Suggestion apply:
 
 ![Context Menu](art/features/IncludeSemicolon2.PNG)
+
+
+### Initialization to Array and Object
+When starting an object with `new Array()`, it is suggested that will replace `[]`.
+
+![Context Menu](art/features/InitializeArray.PNG)
+
+Suggestion apply:
+
+![Context Menu](art/features/InitializeArray2.PNG)
+
+
+And when starting an object with `new Object()`, it is suggested that will replace `{}`.
+
+![Context Menu](art/features/InitializeObject.PNG)
+
+Suggestion apply:
+
+![Context Menu](art/features/InitializeObject2.PNG)
+
+
 
 ## Contribute
 Check out the [contribution guidelines](CONTRIBUTING.md)

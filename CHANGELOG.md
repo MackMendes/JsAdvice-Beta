@@ -23,3 +23,8 @@ on the official Visual Studio extension gallery.
 - [x] Create code fixed to Not Equals Operators.
 - [x] Create code fixed to include Semicolon in end the command.
   
+  ## 1.1
+
+**2016-06-29**
+
+- [x] Create code fixed to Initialization to Array and Object.

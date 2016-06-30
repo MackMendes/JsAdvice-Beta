@@ -46,12 +46,12 @@ namespace JsAdvice.LightBulb
             CancellationToken cancellationToken)
         {
             TextExtent extent;
-            if (!cancellationToken.IsCancellationRequested && TryGetWordUnderCaret(out extent) && extent.IsSignificant)
+            if (!cancellationToken.IsCancellationRequested && TryGetWordUnderCaret(out extent) && extent.IsSignificant && _listSuggestedActionBase != null)
             {
                 //// Posso fazer um centralizador de "possíveis" instâncias... mas, só efetivar as instâncias aqui...
                 //// Utilizando o using para da Dispose sempre que 
                 //ISuggestedAction comparison = new ComparisonOperatorsSuggestd(this.TextBuffer, this.TextView, range, extent);
-                var suggestedActionSet = new SuggestedActionSet(_listSuggestedActionBase, "Teste Rá!");
+                var suggestedActionSet = new SuggestedActionSet(_listSuggestedActionBase);
 
                 Dispose();
 
