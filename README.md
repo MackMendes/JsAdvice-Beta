@@ -86,3 +86,7 @@ used by this project.
 
 ## License
 [Apache 2.0](LICENSE)
+
+[Informações sobre Licença Software](http://pt.stackoverflow.com/questions/76093/aplicar-licen%C3%A7as-ao-github)
+
+[Legislação Software BR](http://www.inpi.gov.br/menu-servicos/programa-de-computador/legislacao-programa-de-computador)
