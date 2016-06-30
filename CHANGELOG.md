@@ -14,7 +14,7 @@ download in the
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
 
-## 1.0
+## 1.0.1
 
 **2016-06-16**
 
@@ -23,7 +23,7 @@ on the official Visual Studio extension gallery.
 - [x] Create code fixed to Not Equals Operators.
 - [x] Create code fixed to include Semicolon in end the command.
   
-  ## 1.1
+  ## 1.0.6
 
 **2016-06-29**
 
