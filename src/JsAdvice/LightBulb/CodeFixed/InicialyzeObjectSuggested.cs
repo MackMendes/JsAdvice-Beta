@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
-    internal sealed class InicialyzeObjectSuggested : Base.SuggestedActionBasicBase
+    internal sealed class InitializeObjectSuggested : Base.SuggestedActionBasicBase
     {
         #region Fixed
 
@@ -12,7 +12,7 @@ namespace JsAdvice.LightBulb.CodeFixed
 
         #endregion
 
-        public InicialyzeObjectSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
+        public InitializeObjectSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
             : base(buffer, view, range, messagerDisplay)
         { }
 
