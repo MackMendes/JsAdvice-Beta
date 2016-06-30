@@ -49,8 +49,8 @@
     <Compile Include="LightBulb\CodeFixed\Base\SuggestedActionBase.cs" />
     <Compile Include="LightBulb\CodeFixed\Base\SuggestedActionBasicBase.cs" />
     <Compile Include="LightBulb\CodeFixed\EqualsOperatorsSuggested.cs" />
-    <Compile Include="LightBulb\CodeFixed\InicialyzeObjectSuggested.cs" />
-    <Compile Include="LightBulb\CodeFixed\InicialyzeArraySuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\InitializeObjectSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\InitializeArraySuggested.cs" />
     <Compile Include="LightBulb\CodeFixed\UnequalOperatorsSuggested.cs" />
     <Compile Include="LightBulb\CodeFixed\WithoutSemicolonSuggested.cs" />
     <Compile Include="LightBulb\Helper\VerifyCodeFixes.cs" />
