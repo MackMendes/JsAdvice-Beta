@@ -20,6 +20,7 @@ See the [changelog](CHANGELOG.md) for changes and roadmap.
 - Code fixed to Equals Operators
 - Code fixed to Unequal Operators
 - Code fixed to include Semicolon in end the command
+- Code fixed to initialization of Array and Object
 
 ### Light Bulb Visual Studio 2015:
 Using the Light Bulb Visual Studio 2015:
