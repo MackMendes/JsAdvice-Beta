@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
-    internal sealed class UnequalOperatorsSuggested : Base.SuggestedActionBasicBase
+    public sealed class UnequalOperatorsSuggested : Base.SuggestedActionBasicBase
     {
         #region Fixed
 
@@ -18,9 +18,9 @@ namespace JsAdvice.LightBulb.CodeFixed
 
         #region Properties SuggestedActionBasicBase 
 
-        public override string ValueFix { get { return " != "; } }
+        public override string ValueFix => " != ";
 
-        public override string ValueFixedUp { get { return " !== "; } }
+        public override string ValueFixedUp => " !== ";
 
         #endregion
 

@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Editor;
 
-namespace JsAdvice.LightBulb.CodeFixed.Base
+namespace JsAdvice.Analyses.LightBuld.CodeFixed.Base
 {
     public abstract class SuggestedActionBasicBase : SuggestedActionBase
     {

@@ -88,21 +88,18 @@ namespace JsAdvice.LightBulb
         private bool TryGetWordUnderCaret(out TextExtent wordExtent)
         {
             ITextCaret caret = TextView.Caret;
-            SnapshotPoint point;
 
             if (caret.Position.BufferPosition > 0)
             {
-                point = caret.Position.BufferPosition - 1;
+                SnapshotPoint point = caret.Position.BufferPosition - 1;
                 ITextStructureNavigator navigator = this.codeFixedSourceProvider.NavigatorService.GetTextStructureNavigator(TextBuffer);
                 wordExtent = navigator.GetExtentOfWord(point);
 
                 return true;
             }
-            else
-            {
-                wordExtent = default(TextExtent);
-                return false;
-            }
+
+            wordExtent = default(TextExtent);
+            return false;
         }
 
         private void FillListSuggested(SnapshotSpan range)

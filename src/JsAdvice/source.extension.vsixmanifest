@@ -6,6 +6,7 @@
     <Description xml:space="preserve">Js Advice is a JavaScript code analyzer. Checking possible errors or bad practices will advise possible changes, in JavaScript code. By Light bulb (Visual Studio 2015) and intuitive menu.</Description>
     <MoreInfo>https://github.com/MackMendes/JsAdvice-Beta</MoreInfo>
     <License>Resources\LICENSE</License>
+    <ReleaseNotes>https://github.com/MackMendes/JsAdvice-Beta/blob/master/CHANGELOG.md</ReleaseNotes>
     <Icon>PreviewOwl.png</Icon>
     <PreviewImage>PreviewOwl.png</PreviewImage>
     <Tags>Code Analyzer, Code Fixed, JavaScript, Good Practices, Light bulb</Tags>

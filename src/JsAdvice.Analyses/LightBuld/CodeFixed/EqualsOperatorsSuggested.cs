@@ -1,10 +1,11 @@
-﻿using Microsoft.VisualStudio.Text;
+﻿using System.Threading;
+using JsAdvice.Analyses.LightBuld.CodeFixed.Base;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
-using System.Threading;
 
-namespace JsAdvice.LightBulb.CodeFixed
+namespace JsAdvice.Analyses.LightBuld.CodeFixed
 {
-    public sealed class EqualsOperatorsSuggested : Base.SuggestedActionBasicBase
+    public sealed class EqualsOperatorsSuggested : SuggestedActionBasicBase
     {
         #region Fixed
 

@@ -17,7 +17,7 @@ namespace JsAdvice.LightBulb
 
         public ISuggestedActionsSource CreateSuggestedActionsSource(ITextView textView, ITextBuffer textBuffer)
         {
-            if (textBuffer == null && textView == null || textBuffer.ContentType.TypeName != "JavaScript")
+            if (textBuffer == null && textView == null || textBuffer?.ContentType.TypeName != "JavaScript")
                 return null;
 
             return new CodeFixedActionsSource(this, textView, textBuffer);

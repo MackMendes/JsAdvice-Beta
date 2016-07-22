@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsAdvice", "src\JsAdvice\JsAdvice.csproj", "{0F64E9EE-0251-4D2F-BCC5-EDF32A6C7B4C}"
 EndProject
@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsAdvice.Analyses.Test", "test\JsAdvice.Test\JsAdvice.Analyses.Test.csproj", "{8C3C4033-C65B-4A15-9F60-E6CC4A123D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsAdvice.Analyses", "src\JsAdvice.Analyses\JsAdvice.Analyses.csproj", "{1E82391D-E1C5-4EB3-9517-B5E493DDE799}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +26,14 @@ Global
 		{0F64E9EE-0251-4D2F-BCC5-EDF32A6C7B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F64E9EE-0251-4D2F-BCC5-EDF32A6C7B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F64E9EE-0251-4D2F-BCC5-EDF32A6C7B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C3C4033-C65B-4A15-9F60-E6CC4A123D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C3C4033-C65B-4A15-9F60-E6CC4A123D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C3C4033-C65B-4A15-9F60-E6CC4A123D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C3C4033-C65B-4A15-9F60-E6CC4A123D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E82391D-E1C5-4EB3-9517-B5E493DDE799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E82391D-E1C5-4EB3-9517-B5E493DDE799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E82391D-E1C5-4EB3-9517-B5E493DDE799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E82391D-E1C5-4EB3-9517-B5E493DDE799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

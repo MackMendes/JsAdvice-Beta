@@ -1,19 +1,20 @@
-﻿using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using JsAdvice.Analyses.LightBuld.CodeFixed.Base;
+using Microsoft.VisualStudio.Text;
+using Microsoft.VisualStudio.Text.Editor;
 
-namespace JsAdvice.LightBulb.CodeFixed
+namespace JsAdvice.Analyses.LightBuld.CodeFixed
 {
     /// <summary>
     /// Refactory this Class 
     /// </summary>
-    public sealed class WithoutSemicolonSuggested : Base.SuggestedActionBase
+    public sealed class WithoutSemicolonSuggested : SuggestedActionBase
     {
         #region Fixed
         private readonly char[] notNecessarySemicolon =

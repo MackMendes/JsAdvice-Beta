@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace JsAdvice.LightBulb.CodeFixed
 {
-    internal sealed class InitializeArraySuggested : Base.SuggestedActionBasicBase
+    public sealed class InitializeArraySuggested : Base.SuggestedActionBasicBase
     {
         #region Fixed
 
@@ -18,9 +18,9 @@ namespace JsAdvice.LightBulb.CodeFixed
 
         #region Properties SuggestedActionBasicBase 
 
-        public override string ValueFix { get { return " new Array()"; } }
+        public override string ValueFix => " new Array()";
 
-        public override string ValueFixedUp { get { return " []"; } }
+        public override string ValueFixedUp => " []";
 
         #endregion
 

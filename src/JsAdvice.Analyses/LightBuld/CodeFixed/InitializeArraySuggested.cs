@@ -1,26 +1,27 @@
-﻿using Microsoft.VisualStudio.Text;
+﻿using System.Threading;
+using JsAdvice.Analyses.LightBuld.CodeFixed.Base;
+using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
-using System.Threading;
 
-namespace JsAdvice.LightBulb.CodeFixed
+namespace JsAdvice.Analyses.LightBuld.CodeFixed
 {
-    public sealed class InitializeObjectSuggested : Base.SuggestedActionBasicBase
+    public sealed class InitializeArraySuggested : SuggestedActionBasicBase
     {
         #region Fixed
 
-        private const string messagerDisplay = "Advised change the boot array value, changing 'new Object()' with '{}'. It is performative.";
+        private const string messagerDisplay = "Advised change the boot array value, changing 'new Array()' with '[]'. It is performative.";
 
         #endregion
 
-        public InitializeObjectSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
+        public InitializeArraySuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
             : base(buffer, view, range, messagerDisplay)
         { }
 
         #region Properties SuggestedActionBasicBase 
 
-        public override string ValueFix => " new Object()";
+        public override string ValueFix => " new Array()";
 
-        public override string ValueFixedUp => " {}";
+        public override string ValueFixedUp => " []";
 
         #endregion
 
