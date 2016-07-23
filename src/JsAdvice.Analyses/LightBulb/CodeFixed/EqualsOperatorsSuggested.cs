@@ -1,9 +1,9 @@
 ﻿using System.Threading;
-using JsAdvice.Analyses.LightBuld.CodeFixed.Base;
+using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace JsAdvice.Analyses.LightBuld.CodeFixed
+namespace JsAdvice.Analyses.LightBulb.CodeFixed
 {
     public sealed class EqualsOperatorsSuggested : SuggestedActionBasicBase
     {

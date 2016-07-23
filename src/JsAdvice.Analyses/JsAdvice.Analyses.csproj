@@ -53,13 +53,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LightBuld\CodeFixed\Base\SuggestedActionBase.cs" />
-    <Compile Include="LightBuld\CodeFixed\Base\SuggestedActionBasicBase.cs" />
-    <Compile Include="LightBuld\CodeFixed\EqualsOperatorsSuggested.cs" />
-    <Compile Include="LightBuld\CodeFixed\InitializeArraySuggested.cs" />
-    <Compile Include="LightBuld\CodeFixed\InitializeObjectSuggested.cs" />
-    <Compile Include="LightBuld\CodeFixed\UnequalOperatorsSuggested.cs" />
-    <Compile Include="LightBuld\CodeFixed\WithoutSemicolonSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\Base\SuggestedActionBase.cs" />
+    <Compile Include="LightBulb\CodeFixed\Base\SuggestedActionBasicBase.cs" />
+    <Compile Include="LightBulb\CodeFixed\EqualsOperatorsSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\InitializeArraySuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\InitializeObjectSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\UnequalOperatorsSuggested.cs" />
+    <Compile Include="LightBulb\CodeFixed\WithoutSemicolonSuggested.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

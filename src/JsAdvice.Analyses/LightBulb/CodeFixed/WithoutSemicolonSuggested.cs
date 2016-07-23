@@ -5,11 +5,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using JsAdvice.Analyses.LightBuld.CodeFixed.Base;
+using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace JsAdvice.Analyses.LightBuld.CodeFixed
+namespace JsAdvice.Analyses.LightBulb.CodeFixed
 {
     /// <summary>
     /// Refactory this Class 
@@ -73,7 +73,7 @@ namespace JsAdvice.Analyses.LightBuld.CodeFixed
 
         #region Fixed
 
-        internal override bool VerifiyHasCodeFixed()
+        public override bool VerifiyHasCodeFixed()
         {
             var textLine = this.Range.GetText().Trim();
             var getLastCharacter = textLine.Length > 0 ? textLine.Substring(textLine.Length - 1).ToCharArray() : new char[] { ' ' };

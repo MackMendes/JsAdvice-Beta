@@ -1,15 +1,17 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace JsAdvice.Analyses.LightBuld.CodeFixed.Base
+namespace JsAdvice.Analyses.LightBulb.CodeFixed.Base
 {
     public abstract class SuggestedActionBasicBase : SuggestedActionBase
     {
-        public SuggestedActionBasicBase(ITextBuffer buffer, ITextView view, SnapshotSpan range, string messagerDisplay)
+        protected SuggestedActionBasicBase(ITextBuffer buffer, ITextView view, SnapshotSpan range, string messagerDisplay)
             : base(buffer, view, range, messagerDisplay)
         { }
 
@@ -36,9 +38,9 @@ namespace JsAdvice.Analyses.LightBuld.CodeFixed.Base
             return Task.FromResult<object>(textBlock);
         }
 
-        internal override bool VerifiyHasCodeFixed()
+        public override bool VerifiyHasCodeFixed()
         {
-            if (Range.GetText().IndexOf(ValueFix) > -1)
+            if (Range.GetText().IndexOf(ValueFix, StringComparison.Ordinal) > -1)
                 return true;
 
             return false;
@@ -53,7 +55,7 @@ namespace JsAdvice.Analyses.LightBuld.CodeFixed.Base
             var textShotActual = this.TextBuffer.CurrentSnapshot;
 
             // Com a linha atual, verifico em qual posição da linha o valor que vou corrigir está.
-            int indexOfCompare = Range.GetText().IndexOf(ValueFix);
+            int indexOfCompare = Range.GetText().IndexOf(ValueFix, StringComparison.Ordinal);
             // Pego a posição de onde está o valor a corrigir no arquivo (primeiro caracter + a posição do valor à corrigir)
             int newStartPosition = Range.Start.Position + indexOfCompare;
 

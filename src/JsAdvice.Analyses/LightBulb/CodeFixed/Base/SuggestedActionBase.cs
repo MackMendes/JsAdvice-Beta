@@ -8,11 +8,11 @@ using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
-namespace JsAdvice.Analyses.LightBuld.CodeFixed.Base
+namespace JsAdvice.Analyses.LightBulb.CodeFixed.Base
 {
     public abstract class SuggestedActionBase : ISuggestedAction
     {
-        public SuggestedActionBase(ITextBuffer buffer, ITextView view, SnapshotSpan range, string displayText)
+        protected SuggestedActionBase(ITextBuffer buffer, ITextView view, SnapshotSpan range, string displayText)
         {
             this.TextBuffer = buffer;
             this.TextView = view;
@@ -68,7 +68,7 @@ namespace JsAdvice.Analyses.LightBuld.CodeFixed.Base
 
         #region Method
 
-        internal abstract bool VerifiyHasCodeFixed();
+        public abstract bool VerifiyHasCodeFixed();
 
         #endregion
 
