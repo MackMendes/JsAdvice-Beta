@@ -9,12 +9,12 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
     {
         #region Fixed
 
-        private const string messagerDisplay = "Advisable to use three equal (===). It is performative.";
+        private const string _messagerDisplay = "Advisable to use three equal (===). It is performative.";
 
         #endregion
 
         public EqualsOperatorsSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
-        : base(buffer, view, range, messagerDisplay)
+        : base(buffer, view, range, _messagerDisplay)
         { }
 
         #region Preperties SuggestedActionBase
@@ -32,7 +32,7 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
             if (cancellationToken.IsCancellationRequested)
                 return;
 
-            SnapshotSpan getSpan = this.GetSpanWithCodeFixed();
+            SnapshotSpan getSpan = base.GetSpanWithCodeFixed();
             // Faço o replace
             this.TextBuffer.Replace(getSpan, ValueFixedUp);
         }

@@ -64,6 +64,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helper\MoqTextBuffer.cs" />
+    <Compile Include="Helper\MoqTextSnapshot.cs" />
+    <Compile Include="Helper\MoqTrackingSpan.cs" />
     <Compile Include="LightBulb\CodeFixed\EqualsOperatorsSuggestedTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +79,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

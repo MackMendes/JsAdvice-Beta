@@ -17,30 +17,30 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
     public sealed class WithoutSemicolonSuggested : SuggestedActionBase
     {
         #region Fixed
-        private readonly char[] notNecessarySemicolon =
+        private readonly char[] _notNecessarySemicolon =
             new char[] { '{', '(', '[', ';', '\\', '~', '^', ' ' };
 
-        private readonly string[] reservedWordBeginNotNecessarySemicolon = new string[] { "for", "while", "do", "with", "switch", "try", "if",
+        private readonly string[] _reservedWordBeginNotNecessarySemicolon = new string[] { "for", "while", "do", "with", "switch", "try", "if",
             "else", "class"};
 
-        private readonly List<char> caracteresConcat = new List<char> { ',', '*', '&', '|', '=', '%', ':', '?', '/', '^', '>', '<' };
+        private readonly List<char> _caracteresConcat = new List<char> { ',', '*', '&', '|', '=', '%', ':', '?', '/', '^', '>', '<' };
 
-        private readonly static char signalPositive = '+';
-        private readonly static char signalNegative = '-';
+        private static readonly char signalPositive = '+';
+        private static readonly char signalNegative = '-';
 
-        private readonly string[] carateresAggregation = new string[] { string.Concat(signalPositive, signalPositive),
+        private readonly string[] _carateresAggregation = new string[] { string.Concat(signalPositive, signalPositive),
             string.Concat(signalNegative, signalNegative) };
 
-        private readonly string[] reservedWordBeginCommand = new string[] { "var", "const", "let", "return" };
+        private readonly string[] _reservedWordBeginCommand = new string[] { "var", "const", "let", "return", "debugger" };
 
-        private readonly string[] findEndNextLine = new string[] { "}" };
+        private readonly string[] _findEndNextLine = new string[] { "}" };
 
         #endregion
 
 
         #region Properties To Context
         
-        private const string messagerDisplay = "Advisable to include a semicolon (;) at the end of the command. Prevents errors.";
+        private const string _messagerDisplay = "Advisable to include a semicolon (;) at the end of the command. Prevents errors.";
 
         #endregion
 
@@ -58,12 +58,12 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
         }
 
         public WithoutSemicolonSuggested(ITextBuffer buffer, ITextView view, SnapshotSpan range)
-            : base(buffer, view, range, messagerDisplay)
+            : base(buffer, view, range, _messagerDisplay)
         {
-            reservedWordBeginCommand.Intersect(reservedWordBeginNotNecessarySemicolon);
-            notNecessarySemicolon.Intersect(caracteresConcat);
-            caracteresConcat.Add(signalPositive);
-            caracteresConcat.Add(signalNegative);
+            _reservedWordBeginCommand.Intersect(_reservedWordBeginNotNecessarySemicolon);
+            _notNecessarySemicolon.Intersect(_caracteresConcat);
+            _caracteresConcat.Add(signalPositive);
+            _caracteresConcat.Add(signalNegative);
         }
 
         public override void Invoke(CancellationToken cancellationToken)
@@ -78,7 +78,7 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
             var textLine = this.Range.GetText().Trim();
             var getLastCharacter = textLine.Length > 0 ? textLine.Substring(textLine.Length - 1).ToCharArray() : new char[] { ' ' };
 
-            if (notNecessarySemicolon.Contains(getLastCharacter[0]))
+            if (_notNecessarySemicolon.Contains(getLastCharacter[0]))
                 return false;
 
             return VerifyIncludeSemicolon(textLine);
@@ -91,7 +91,7 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
             splitTextLine = textLine.Split(' ');
             var getBeginWord = splitTextLine[0];
             var getEndWord = splitTextLine.Count() >= 2 ? splitTextLine[splitTextLine.Count() - 1] : string.Empty;
-            if (reservedWordBeginNotNecessarySemicolon.Contains(getBeginWord))
+            if (_reservedWordBeginNotNecessarySemicolon.Contains(getBeginWord))
                 return false;
 
             // Se for a última linha do arquivo
@@ -102,7 +102,7 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
             var partterRegex = @"(([a-zA-Z0-9]((\++)|(\--))))$";
             var lastPositionWord = (getEndWord.Count() - 1);
 
-            if (!(Regex.IsMatch(getBeginWord, partterRegex) || carateresAggregation.Contains(getEndWord)) &&
+            if (!(Regex.IsMatch(getBeginWord, partterRegex) || _carateresAggregation.Contains(getEndWord)) &&
                 !string.IsNullOrWhiteSpace(getEndWord) &&
                 (getEndWord.LastIndexOf(signalPositive) == lastPositionWord || getEndWord.LastIndexOf(signalNegative) == lastPositionWord))
                 return false;
@@ -123,29 +123,29 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed
             splitCommandNextLine = nextLineInText.Trim().Split(' ');
             wordBeginNextLine = splitCommandNextLine[0];
 
-            var caracteresConcatInString = caracteresConcat.ConvertAll<string>(x => x.ToString());
-            if (reservedWordBeginCommand.Contains(getBeginWord) && !string.IsNullOrWhiteSpace(getEndWord) &&
+            var caracteresConcatInString = _caracteresConcat.ConvertAll<string>(x => x.ToString());
+            if (_reservedWordBeginCommand.Contains(getBeginWord) && !string.IsNullOrWhiteSpace(getEndWord) &&
                 !caracteresConcatInString.Contains(getEndWord) &&
                 ((wordBeginNextLine.IndexOf(signalPositive) != 0 && wordBeginNextLine.IndexOf(signalNegative) != 0) ||
-                wordBeginNextLine.IndexOf("++") == 0 || wordBeginNextLine.IndexOf("--") == 0 || carateresAggregation.Contains(wordBeginNextLine)))
+                wordBeginNextLine.IndexOf("++") == 0 || wordBeginNextLine.IndexOf("--") == 0 || _carateresAggregation.Contains(wordBeginNextLine)))
                 return true;
 
             previuosLineInText = this.GetPreviousLine(treeSyntacsThisContext, AllLines);
             splitCommandProviusLine = previuosLineInText.Trim().Split(' ');
             var wordBeginProvLine = splitCommandProviusLine[0];
             var wordEndProvLine = splitCommandProviusLine[splitCommandProviusLine.Count() - 1];
-            var notNecessarySemicolonInList = notNecessarySemicolon.ToList().ConvertAll<string>(x => x.ToString());
+            var notNecessarySemicolonInList = _notNecessarySemicolon.ToList().ConvertAll<string>(x => x.ToString());
 
             //if (reservedWordBeginCommand.Contains(wordBeginProvLine) && !notNecessarySemicolonInList.Contains(wordEndProvLine))
             //    return true;
 
-            if (reservedWordBeginCommand.Contains(wordBeginNextLine))
+            if (_reservedWordBeginCommand.Contains(wordBeginNextLine))
                 return true;
 
             // caso de:  
             // { teste: 1  
             // }
-            if (findEndNextLine.Contains(wordBeginNextLine))
+            if (_findEndNextLine.Contains(wordBeginNextLine))
                 if (textLine.IndexOf(':') == -1 && wordEndProvLine.IndexOf(':') == -1)
                     return true;
 

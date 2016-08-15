@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
@@ -59,7 +58,7 @@ namespace JsAdvice.Analyses.LightBulb.CodeFixed.Base
             // Pego a posição de onde está o valor a corrigir no arquivo (primeiro caracter + a posição do valor à corrigir)
             int newStartPosition = Range.Start.Position + indexOfCompare;
 
-            // Vou criar um novo trexo de palavra, do contexto geral (todo o arquivo), da posição onde inicia o valor que vou corrigir até o final dela mesmo.
+            // Vou criar um novo trexo de palavra, do contexto geral (o arquivo), da posição do inicio do valor que vou corrigir até o final dele mesmo.
             ITrackingSpan trakingSpanNew = textShotActual.CreateTrackingSpan(newStartPosition, ValueFix.Length, SpanTrackingMode.EdgeInclusive);
 
             // Depois, pego a palavra (Span) para fazer o replace com a palavra corrigida

@@ -6,9 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Operations;
-using JsAdvice.LightBulb.CodeFixed;
 using System.Linq;
-using JsAdvice.LightBulb.CodeFixed.Base;
+using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 using JsAdvice.LightBulb.Helper;
 
 namespace JsAdvice.LightBulb
@@ -71,7 +70,7 @@ namespace JsAdvice.LightBulb
                     return extent.IsSignificant && this._listSuggestedActionBase.Count > 0;
                 }
                 return false;
-            });
+            }, cancellationToken);
         }
 
         public bool TryGetTelemetryId(out Guid telemetryId)

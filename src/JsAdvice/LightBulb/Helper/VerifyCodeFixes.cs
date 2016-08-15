@@ -1,9 +1,9 @@
-﻿using JsAdvice.LightBulb.CodeFixed;
-using JsAdvice.LightBulb.CodeFixed.Base;
-using Microsoft.VisualStudio.Text;
+﻿using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using System.Collections.Generic;
 using System.Linq;
+using JsAdvice.Analyses.LightBulb.CodeFixed;
+using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 
 namespace JsAdvice.LightBulb.Helper
 {
@@ -11,14 +11,8 @@ namespace JsAdvice.LightBulb.Helper
     {
         internal static List<SuggestedActionBase> VerifyExistsCodeFixes(CodeFixedActionsSource contextActual, SnapshotSpan range)
         {
-            var listReturn = new List<SuggestedActionBase>();
             var listAll = GetAllCodeFixes(contextActual, range);
-
-            for (int i = 0; i < listAll.Count(); i++)
-            {
-                if (listAll[i].VerifiyHasCodeFixed())
-                    listReturn.Add(listAll[i]);
-            }
+            var listReturn = listAll.Where(t => t.VerifiyHasCodeFixed()).ToList();
             listAll.Clear();
             return listReturn;
         }
