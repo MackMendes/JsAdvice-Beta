@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using JsAdvice.Analyses.LightBulb.CodeFixed;
 using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,97 +28,8 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
             Assert.IsFalse(hasCodeFixed);
         }
 
-
         [TestMethod]
         public void EqualsOperators_CodeFixed()
-        {
-            // Moqs
-            ITextBuffer buffer = Substitute.For<ITextBuffer>();
-            buffer.ContentType.TypeName.Returns("JavaScript");
-            buffer.ContentType.DisplayName.Returns("JavaScript");
-            //buffer.CurrentSnapshot.GetText().Returns("if (var1 == var 2)");
-
-            SnapshotSpan span = this.GetInstanceToJob("if (var1 == var 2)");
-
-            //ITrackingSpan trackingSpan = Substitute.For<ITrackingSpan>();
-
-            //trackingSpan.When(x => x.GetSpan(Arg.Any<ITextSnapshot>())).Do(x =>
-            //{
-            //    ((ITextSnapshot)x[0]).TextBuffer.CurrentSnapshot.GetText();
-
-            //});
-
-            //trackingSpan.GetSpan(Arg.Any<ITextSnapshot>()).ReturnsForAnyArgs(x =>
-            //    this.GetInstanceToJob(x.Arg<ITextSnapshot>().TextBuffer.CurrentSnapshot.GetText())
-            //);
-
-
-            ITextSnapshot snapshot = Substitute.For<ITextSnapshot>();
-            snapshot.TextBuffer.Returns(buffer);
-            snapshot.Lines.Returns(new List<ITextSnapshotLine>() { Substitute.For<ITextSnapshotLine>() });
-            //snapshot.CreateTrackingSpan(0, 3, SpanTrackingMode.EdgeExclusive).
-            //    ReturnsForAnyArgs(returnThis:
-            //        x =>
-            //        {
-            //            return GetInstanceToJob(buffer.CurrentSnapshot.GetText()
-            //                .Substring(Convert.ToInt32(x[0]), Convert.ToInt32(x[1])))
-            //        });
-
-            //snapshot.When(x => x.CreateTrackingSpan(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<SpanTrackingMode>()))
-            //    .Do(x =>
-            //    {
-            //        GetInstanceToJob(span.GetText().Substring(((int) x[0]), (int) x[1]));
-            //    });
-
-            //snapshot.CreateTrackingSpan(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<SpanTrackingMode>()).Returns(trackingSpan);
-
-
-            snapshot.CreateTrackingSpan(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<SpanTrackingMode>())
-            .Returns(x =>
-            {
-                var trackingReturn = Substitute.For<ITrackingSpan>();
-                trackingReturn.GetSpan(Arg.Any<ITextSnapshot>()).Returns(y =>
-                {
-                    return GetInstanceToJob(span.GetText().Substring(((int)x[0]), (int)x[1]));
-                });
-
-                return trackingReturn;
-            });
-
-
-
-            buffer.CurrentSnapshot.Returns(snapshot);
-
-            ITextView textView = Substitute.For<ITextView>();
-            textView.TextBuffer.Returns(buffer);
-            //textView.
-
-
-
-            buffer.Replace(Arg.Any<Span>(), Arg.Any<string>()).Returns(x =>
-            {
-                buffer.CurrentSnapshot.GetText().Returns(y =>
-                {
-                    var spanJob = ((SnapshotSpan) x[0]);
-                    return span.GetText().Replace(spanJob.GetText(), (string) x[1]);
-
-                });
-                return null;
-            });
-            //SnapshotSpan span = this.GetInstanceToJob("if (var1 == var 2)");
-
-            // Preparar cénários
-            SuggestedActionBasicBase equalsOperators = new EqualsOperatorsSuggested(buffer, textView, span);
-
-
-            equalsOperators.Invoke(CancellationToken.None);
-
-            var newBuffer = buffer.CurrentSnapshot.GetText();
-
-        }
-
-        [TestMethod]
-        public void EqualsOperators_CodeFixed_Moq2()
         {
             // Properties
             var contextType = "JavaScript";

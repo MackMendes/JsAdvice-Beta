@@ -7,85 +7,40 @@ namespace JsAdvice.Analyses.Test.Helper
 {
     internal sealed class MoqTextBuffer : ITextBuffer
     {
+        #region Attr
+
         private MoqTextSnapshot _currentSnapshot;
         private PropertyCollection _properties;
         private IContentType _contenteType;
+
+        #endregion
+
+        #region Constructor
 
         public MoqTextBuffer(string text)
         {
             this._currentSnapshot = new MoqTextSnapshot(text);
         }
 
-        public MoqTextBuffer(string text, string contentType):
+        public MoqTextBuffer(string text, string contentType) :
             this(text)
         {
-            this._contenteType = Substitute.For<IContentType>();
-            this._contenteType.TypeName.Returns(contentType);
-            this._contenteType.DisplayName.Returns(contentType);
+            this.BuildContentType(contentType);
         }
+
+        #endregion
+
+        #region Methods
 
         public MoqTextSnapshot CurrentSnapshot
         {
-            get
-            {
-                return this._currentSnapshot;
-            }
-
+            get { return this._currentSnapshot; }
             set
             {
                 ITextSnapshot oldSnapshot = this._currentSnapshot;
                 this._currentSnapshot = value;
                 this.OnChanged(new TextContentChangedEventArgs(oldSnapshot, this._currentSnapshot, new EditOptions(), new object()));
             }
-        }
-
-        public EventHandler<TextContentChangedEventArgs> Changed { get; set; }
-
-        #region ITextBuffer
-
-        PropertyCollection IPropertyOwner.Properties
-        {
-            get { return this._properties ?? (this._properties = new PropertyCollection()); }
-        }
-
-        ITextEdit ITextBuffer.CreateEdit(EditOptions options, int? reiteratedVersionNumber, object editTag)
-        {
-            throw new NotImplementedException();
-        }
-
-        ITextEdit ITextBuffer.CreateEdit()
-        {
-            throw new NotImplementedException();
-        }
-
-        IReadOnlyRegionEdit ITextBuffer.CreateReadOnlyRegionEdit()
-        {
-            throw new NotImplementedException();
-        }
-
-        void ITextBuffer.TakeThreadOwnership()
-        {
-            throw new NotImplementedException();
-        }
-
-        bool ITextBuffer.CheckEditAccess()
-        {
-            throw new NotImplementedException();
-        }
-
-        void ITextBuffer.ChangeContentType(IContentType newContentType, object editTag)
-        {
-            throw new NotImplementedException();
-        }
-
-        ITextSnapshot ITextBuffer.Insert(int position, string text)
-        {
-            throw new NotImplementedException();
-        }
-
-        ITextSnapshot ITextBuffer.Delete(Span deleteSpan)
-        {
-            throw new NotImplementedException();
         }
 
         ITextSnapshot ITextBuffer.Replace(Span replaceSpan, string replaceWith)
@@ -96,47 +51,67 @@ namespace JsAdvice.Analyses.Test.Helper
             return this._currentSnapshot;
         }
 
-        bool ITextBuffer.IsReadOnly(int position)
+        ITextEdit ITextBuffer.CreateEdit(EditOptions options, int? reiteratedVersionNumber, object editTag) { throw new NotImplementedException(); }
+
+        ITextEdit ITextBuffer.CreateEdit() { throw new NotImplementedException(); }
+
+        IReadOnlyRegionEdit ITextBuffer.CreateReadOnlyRegionEdit() { throw new NotImplementedException(); }
+
+        void ITextBuffer.TakeThreadOwnership() { throw new NotImplementedException(); }
+
+        bool ITextBuffer.CheckEditAccess() { throw new NotImplementedException(); }
+
+        void ITextBuffer.ChangeContentType(IContentType newContentType, object editTag) { throw new NotImplementedException(); }
+
+        ITextSnapshot ITextBuffer.Insert(int position, string text) { throw new NotImplementedException(); }
+
+        ITextSnapshot ITextBuffer.Delete(Span deleteSpan) { throw new NotImplementedException(); }
+
+        bool ITextBuffer.IsReadOnly(int position) { throw new NotImplementedException(); }
+
+        bool ITextBuffer.IsReadOnly(int position, bool isEdit) { throw new NotImplementedException(); }
+
+        bool ITextBuffer.IsReadOnly(Span span) { throw new NotImplementedException(); }
+
+        bool ITextBuffer.IsReadOnly(Span span, bool isEdit) { throw new NotImplementedException(); }
+
+        NormalizedSpanCollection ITextBuffer.GetReadOnlyExtents(Span span) { throw new NotImplementedException(); }
+
+        #endregion
+
+        #region Event from ITextBuffer
+
+        public event EventHandler<TextContentChangedEventArgs> ChangedLowPriority
         {
-            throw new NotImplementedException();
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
         }
 
-        bool ITextBuffer.IsReadOnly(int position, bool isEdit)
+        public event EventHandler<TextContentChangedEventArgs> ChangedHighPriority
         {
-            throw new NotImplementedException();
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
         }
 
-        bool ITextBuffer.IsReadOnly(Span span)
+        public event EventHandler<TextContentChangingEventArgs> Changing
         {
-            throw new NotImplementedException();
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
         }
 
-        bool ITextBuffer.IsReadOnly(Span span, bool isEdit)
+        public event EventHandler PostChanged
         {
-            throw new NotImplementedException();
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
         }
 
-        NormalizedSpanCollection ITextBuffer.GetReadOnlyExtents(Span span)
+        public event EventHandler<ContentTypeChangedEventArgs> ContentTypeChanged
         {
-            throw new NotImplementedException();
+            add { throw new NotImplementedException(); }
+            remove { throw new NotImplementedException(); }
         }
 
-        IContentType ITextBuffer.ContentType
-        {
-            get { return this._contenteType; }
-        }
-
-        ITextSnapshot ITextBuffer.CurrentSnapshot
-        {
-            get { return this.CurrentSnapshot; }
-        }
-
-        bool ITextBuffer.EditInProgress
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        event EventHandler<SnapshotSpanEventArgs> ITextBuffer.ReadOnlyRegionsChanged
+        public event EventHandler<SnapshotSpanEventArgs> ReadOnlyRegionsChanged
         {
             add { throw new NotImplementedException(); }
             remove { throw new NotImplementedException(); }
@@ -148,44 +123,43 @@ namespace JsAdvice.Analyses.Test.Helper
             remove { this.Changed -= value; }
         }
 
-        event EventHandler<TextContentChangedEventArgs> ITextBuffer.ChangedLowPriority
+        private void OnChanged(TextContentChangedEventArgs args)
         {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
+            this.Changed?.Invoke(this, args);
         }
 
-        event EventHandler<TextContentChangedEventArgs> ITextBuffer.ChangedHighPriority
+        #endregion Event from ITextBuffer
+
+        #region Properties
+
+        public EventHandler<TextContentChangedEventArgs> Changed { get; set; }
+
+        PropertyCollection IPropertyOwner.Properties
         {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
+            get { return this._properties ?? (this._properties = new PropertyCollection()); }
         }
 
-        event EventHandler<TextContentChangingEventArgs> ITextBuffer.Changing
-        {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
-        }
+        IContentType ITextBuffer.ContentType { get { return this._contenteType; } }
 
-        event EventHandler ITextBuffer.PostChanged
-        {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
-        }
+        ITextSnapshot ITextBuffer.CurrentSnapshot { get { return this.CurrentSnapshot; } }
 
-        event EventHandler<ContentTypeChangedEventArgs> ITextBuffer.ContentTypeChanged
+        bool ITextBuffer.EditInProgress { get { throw new NotImplementedException(); } }
+
+        #endregion Properties
+
+        #region Method of Helper
+
+        /// <summary>
+        /// Build Object Moq of IContentType
+        /// </summary>
+        /// <param name="contentType">Content Type from object</param>
+        private void BuildContentType(string contentType)
         {
-            add { throw new NotImplementedException(); }
-            remove { throw new NotImplementedException(); }
+            this._contenteType = Substitute.For<IContentType>();
+            this._contenteType.TypeName.Returns(contentType);
+            this._contenteType.DisplayName.Returns(contentType);
         }
 
         #endregion
-
-        private void OnChanged(TextContentChangedEventArgs args)
-        {
-            if (this.Changed != null)
-            {
-                this.Changed(this, args);
-            }
-        }
     }
 }

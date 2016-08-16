@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Utilities;
-using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,13 +9,41 @@ namespace JsAdvice.Analyses.Test.Helper
 {
     internal sealed class MoqTextSnapshot : ITextSnapshot
     {
+        #region Attr
+
         private readonly string text;
+
+        #endregion
+
+        #region Constructor
 
         public MoqTextSnapshot(string text)
         {
             Debug.Assert(text != null, "text");
             this.text = text;
         }
+
+        #endregion
+
+        #region Properties
+
+        public ITextBuffer TextBuffer { get { throw new NotImplementedException(); } }
+
+        public IContentType ContentType { get { throw new NotImplementedException(); } }
+
+        public ITextVersion Version { get { throw new NotImplementedException(); } }
+
+        public int Length { get { return this.text.Length; } }
+
+        public int LineCount { get { throw new NotImplementedException(); } }
+
+        public char this[int position] { get { throw new NotImplementedException(); } }
+
+        public IEnumerable<ITextSnapshotLine> Lines { get { throw new NotImplementedException(); } }
+
+        #endregion
+
+        #region Method
 
         public string GetText(Span span)
         {
@@ -73,65 +100,17 @@ namespace JsAdvice.Analyses.Test.Helper
             throw new NotImplementedException();
         }
 
-        public ITextSnapshotLine GetLineFromLineNumber(int lineNumber)
-        {
-            throw new NotImplementedException();
-        }
+        public ITextSnapshotLine GetLineFromLineNumber(int lineNumber) { throw new NotImplementedException(); }
 
-        public ITextSnapshotLine GetLineFromPosition(int position)
-        {
-            throw new NotImplementedException();
-        }
+        public ITextSnapshotLine GetLineFromPosition(int position) { throw new NotImplementedException(); }
 
-        public int GetLineNumberFromPosition(int position)
-        {
-            throw new NotImplementedException();
-        }
+        public int GetLineNumberFromPosition(int position) { throw new NotImplementedException(); }
 
-        public void Write(TextWriter writer, Span span)
-        {
-            throw new NotImplementedException();
-        }
+        public void Write(TextWriter writer, Span span) { throw new NotImplementedException(); }
 
-        public void Write(TextWriter writer)
-        {
-            throw new NotImplementedException();
-        }
+        public void Write(TextWriter writer) { throw new NotImplementedException(); }
 
-        public ITextBuffer TextBuffer
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IContentType ContentType
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public ITextVersion Version
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public int Length
-        {
-            get { return this.text.Length; }
-        }
-
-        public int LineCount
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public char this[int position]
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IEnumerable<ITextSnapshotLine> Lines
-        {
-            get { throw new NotImplementedException(); }
-        }
+        #endregion
     }
 }
 

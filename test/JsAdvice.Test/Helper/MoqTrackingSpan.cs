@@ -4,8 +4,14 @@ namespace JsAdvice.Analyses.Test.Helper
 {
     internal class MoqTrackingSpan : ITrackingSpan
     {
+        #region Attr
+
         private Span span;
         private SpanTrackingMode trackingMode;
+
+        #endregion
+
+        #region Constructor
 
         public MoqTrackingSpan(Span span, SpanTrackingMode trackingMode)
         {
@@ -13,7 +19,17 @@ namespace JsAdvice.Analyses.Test.Helper
             this.trackingMode = trackingMode;
         }
 
-        #region ITrackingSpan
+        #endregion
+
+        #region Properties
+
+        SpanTrackingMode ITrackingSpan.TrackingMode { get { return this.trackingMode; } }
+
+        TrackingFidelityMode ITrackingSpan.TrackingFidelity { get { throw new System.NotImplementedException(); } }
+
+        #endregion
+
+        #region Methods
 
         SnapshotSpan ITrackingSpan.GetSpan(ITextSnapshot snapshot)
         {
@@ -22,38 +38,19 @@ namespace JsAdvice.Analyses.Test.Helper
 
         Span ITrackingSpan.GetSpan(ITextVersion version)
         {
-            throw new System.NotImplementedException();
+            return this.span;
         }
 
         string ITrackingSpan.GetText(ITextSnapshot snapshot)
         {
-            throw new System.NotImplementedException();
+            return snapshot.GetText();
         }
 
-        SnapshotPoint ITrackingSpan.GetStartPoint(ITextSnapshot snapshot)
-        {
-            throw new System.NotImplementedException();
-        }
+        SnapshotPoint ITrackingSpan.GetStartPoint(ITextSnapshot snapshot) { throw new System.NotImplementedException(); }
 
-        SnapshotPoint ITrackingSpan.GetEndPoint(ITextSnapshot snapshot)
-        {
-            throw new System.NotImplementedException();
-        }
+        SnapshotPoint ITrackingSpan.GetEndPoint(ITextSnapshot snapshot) { throw new System.NotImplementedException(); }
 
-        ITextBuffer ITrackingSpan.TextBuffer
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        SpanTrackingMode ITrackingSpan.TrackingMode
-        {
-            get { return this.trackingMode; }
-        }
-
-        TrackingFidelityMode ITrackingSpan.TrackingFidelity
-        {
-            get { throw new System.NotImplementedException(); }
-        }
+        ITextBuffer ITrackingSpan.TextBuffer { get { throw new System.NotImplementedException(); } }
 
         #endregion
     }
