@@ -1,19 +1,19 @@
-﻿using System.Threading;
-using JsAdvice.Analyses.LightBulb.CodeFixed;
-using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
 using NSubstitute;
 using JsAdvice.Analyses.Test.Helper;
+using Microsoft.VisualStudio.Text.Editor;
+using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
+using JsAdvice.Analyses.LightBulb.CodeFixed;
+using System.Threading;
 
 namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
 {
     [TestClass]
-    public class EqualsOperatorsSuggestedTest
+    public class UnequalOperatorsSuggestedTest
     {
         [TestMethod]
-        public void EqualsOperators_NotHasCodeFixed()
+        public void UnequalOperators_NotHasCodeFixed()
         {
             // Preparar cénários
             ITextBuffer buffer = Substitute.For<ITextBuffer>();
@@ -21,7 +21,7 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
             SnapshotSpan span = CommonHelper.GetInstanceSnapshotSpan("var teste;");
 
             // Ação (Executar)
-            SuggestedActionBasicBase equalsOperators = new EqualsOperatorsSuggested(buffer, textView, span);
+            SuggestedActionBasicBase equalsOperators = new UnequalOperatorsSuggested(buffer, textView, span);
 
             // Afirmar (Verificar resultado)
             var hasCodeFixed = equalsOperators.VerifiyHasCodeFixed();
@@ -29,7 +29,7 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
         }
 
         [TestMethod]
-        public void EqualsOperators_HasCodeFixed()
+        public void UnequalOperators_HasCodeFixed()
         {
             // Preparar cénários e Ação (Executar)
             SuggestedActionBasicBase equalsOperators = this.GetInstanceSuggestedActionWithSucess();
@@ -39,10 +39,10 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
         }
 
         [TestMethod]
-        public void EqualsOperators_CodeFixed()
+        public void UnequalOperators_CodeFixed()
         {
             // Properties
-            var codeExpected = "if (var1 === var 2)";
+            var codeExpected = "if (var1 !== var 2)";
 
             // Preparar cénários
             SuggestedActionBasicBase equalsOperators = this.GetInstanceSuggestedActionWithSucess();
@@ -56,7 +56,7 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
         {
             // Properties
             var contextType = "JavaScript";
-            var codeFixed = "if (var1 == var 2)";
+            var codeFixed = "if (var1 != var 2)";
 
             // Moqs
             ITextBuffer buffer = new MoqTextBuffer(codeFixed, contextType);
@@ -65,7 +65,7 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
             textView.TextBuffer.Returns(buffer);
 
             // Instance of the Suggest to Job!
-            return new EqualsOperatorsSuggested(buffer, textView, span);
+            return new UnequalOperatorsSuggested(buffer, textView, span);
         }
     }
 }
