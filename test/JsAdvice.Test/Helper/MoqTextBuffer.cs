@@ -17,14 +17,9 @@ namespace JsAdvice.Analyses.Test.Helper
 
         #region Constructor
 
-        public MoqTextBuffer(string text)
+        public MoqTextBuffer(string text, string contentType = "JavaScript")
         {
             this._currentSnapshot = new MoqTextSnapshot(text);
-        }
-
-        public MoqTextBuffer(string text, string contentType) :
-            this(text)
-        {
             this.BuildContentType(contentType);
         }
 

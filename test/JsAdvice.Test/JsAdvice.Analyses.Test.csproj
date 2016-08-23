@@ -69,7 +69,9 @@
     <Compile Include="Helper\MoqTextSnapshot.cs" />
     <Compile Include="Helper\MoqTrackingSpan.cs" />
     <Compile Include="LightBulb\CodeFixed\EqualsOperatorsSuggestedTest.cs" />
+    <Compile Include="LightBulb\CodeFixed\InitializeObjectSuggestedTest.cs" />
     <Compile Include="LightBulb\CodeFixed\UnequalOperatorsSuggestedTest.cs" />
+    <Compile Include="LightBulb\CodeFixed\InitializeArraySuggestedTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

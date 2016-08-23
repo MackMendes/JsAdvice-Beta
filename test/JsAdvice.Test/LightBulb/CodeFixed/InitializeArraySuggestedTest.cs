@@ -1,19 +1,19 @@
-﻿using System.Threading;
-using JsAdvice.Analyses.LightBulb.CodeFixed;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JsAdvice.Analyses.LightBulb.CodeFixed.Base;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Text;
-using Microsoft.VisualStudio.Text.Editor;
-using NSubstitute;
 using JsAdvice.Analyses.Test.Helper;
+using NSubstitute;
+using Microsoft.VisualStudio.Text.Editor;
+using JsAdvice.Analyses.LightBulb.CodeFixed;
+using System.Threading;
 
 namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
 {
     [TestClass]
-    public class EqualsOperatorsSuggestedTest
+    public class InitializeArraySuggestedTest
     {
         [TestMethod]
-        public void EqualsOperators_NotHasCodeFixed()
+        public void InitializeArray_NotHasCodeFixed()
         {
             // Preparar cénários
             ITextBuffer buffer = Substitute.For<ITextBuffer>();
@@ -21,41 +21,41 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
             SnapshotSpan span = CommonHelper.GetInstanceSnapshotSpan("var teste;");
 
             // Ação (Executar)
-            SuggestedActionBasicBase equalsOperators = new EqualsOperatorsSuggested(buffer, textView, span);
+            SuggestedActionBasicBase initializeArray = new InitializeArraySuggested(buffer, textView, span);
 
             // Afirmar (Verificar resultado)
-            var hasCodeFixed = equalsOperators.VerifiyHasCodeFixed();
+            var hasCodeFixed = initializeArray.VerifiyHasCodeFixed();
             Assert.IsFalse(hasCodeFixed);
         }
 
         [TestMethod]
-        public void EqualsOperators_HasCodeFixed()
+        public void InitializeArray_HasCodeFixed()
         {
             // Preparar cénários e Ação (Executar)
-            SuggestedActionBasicBase equalsOperators = this.GetInstanceSuggestedActionWithSucess();
+            SuggestedActionBasicBase equalsOperators = this.GetInstanceInitializeArrayWithSucess();
 
             // Afirmar (Verificar resultado)
             Assert.IsTrue(equalsOperators.VerifiyHasCodeFixed());
         }
 
         [TestMethod]
-        public void EqualsOperators_CodeFixed()
+        public void InitializeArray_CodeFixed()
         {
             // Properties
-            var codeExpected = "if (var1 === var 2)";
+            var codeExpected = " []";
 
             // Preparar cénários
-            SuggestedActionBasicBase equalsOperators = this.GetInstanceSuggestedActionWithSucess();
+            SuggestedActionBasicBase equalsOperators = this.GetInstanceInitializeArrayWithSucess();
             equalsOperators.Invoke(CancellationToken.None);
 
             var resultSuggested = equalsOperators.TextBuffer.CurrentSnapshot.GetText();
             Assert.AreEqual(codeExpected, resultSuggested);
         }
 
-        private SuggestedActionBasicBase GetInstanceSuggestedActionWithSucess()
+        private SuggestedActionBasicBase GetInstanceInitializeArrayWithSucess()
         {
             // Properties
-            var codeFixed = "if (var1 == var 2)";
+            var codeFixed = " new Array()";
 
             // Moqs
             ITextBuffer buffer = new MoqTextBuffer(codeFixed);
@@ -64,7 +64,7 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
             textView.TextBuffer.Returns(buffer);
 
             // Instance of the Suggest to Job!
-            return new EqualsOperatorsSuggested(buffer, textView, span);
+            return new InitializeArraySuggested(buffer, textView, span);
         }
     }
 }

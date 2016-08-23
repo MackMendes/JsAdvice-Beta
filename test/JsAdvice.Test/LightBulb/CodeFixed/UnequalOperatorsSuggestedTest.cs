@@ -55,11 +55,10 @@ namespace JsAdvice.Analyses.Test.LightBulb.CodeFixed
         private SuggestedActionBasicBase GetInstanceSuggestedActionWithSucess()
         {
             // Properties
-            var contextType = "JavaScript";
             var codeFixed = "if (var1 != var 2)";
 
             // Moqs
-            ITextBuffer buffer = new MoqTextBuffer(codeFixed, contextType);
+            ITextBuffer buffer = new MoqTextBuffer(codeFixed);
             SnapshotSpan span = CommonHelper.GetInstanceSnapshotSpan(codeFixed);
             ITextView textView = Substitute.For<ITextView>();
             textView.TextBuffer.Returns(buffer);
